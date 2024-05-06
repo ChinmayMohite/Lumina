@@ -52,7 +52,6 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-
         'washed-blue-50': '#f0f3ff',
         'washed-blue-100': '#d0daff',
         'washed-blue-200': '#bac9ff',
