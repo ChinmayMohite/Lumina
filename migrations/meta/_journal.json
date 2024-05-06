@@ -8,6 +8,20 @@
       "when": 1714986970543,
       "tag": "0000_fearless_russian",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1714987504938,
+      "tag": "0001_futuristic_spirit",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1714988327772,
+      "tag": "0002_clear_skin",
+      "breakpoints": true
     }
   ]
 }
