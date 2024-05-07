@@ -1,9 +1,16 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
+import CustomCard from '@/components/landing-page/custom-card'
 import TitleSection from '@/components/landing-page/title-section'
 import Image from 'next/image'
 import Banner from '../../../public/appBanner.png'
-import { CLIENTS } from '@/lib/constants'
+import { CLIENTS , USERS } from '@/lib/constants'
+import Calender from "../../../public/cal.png"
+import { randomUUID } from 'crypto'
+import { twMerge } from 'tailwind-merge'
+import clsx from 'clsx'
+import { Avatar,AvatarImage,AvatarFallback } from '@/components/ui/avatar'
+import { CardContent, CardDescription, CardTitle } from '@/components/ui/card'
 
 const HomePage = () => {
   return (
@@ -85,7 +92,53 @@ const HomePage = () => {
           ))}
         </div>
       </section>
-      
+      <section className='px-4 sm:px-6 flex justify-center items-center flex-col relative'>
+        <div className='w-[30%] blur-[120px] rounded-full h-32 absolute bg-brand-primaryPurple/50 -z-10 top-22'>
+        </div>
+          <TitleSection title="Keep track of your notes all in one place" subheading='Capture your ideas,thoughts and meeting notes in a structured and organized manner.' pill='Features'></TitleSection>
+          <div className='mt-10 max-w-[450px] justify-center items-center relative sm:ml-0 rounded-2xl border-8 border-washed-purple-300 border-opacity-10'>
+            <Image src={Calender} alt="Banner" className='rounded-2xl'></Image>
+          </div>
+      </section>
+      <section className='relative'>
+      <div className='w-full blur-[120px] rounded-full h-32 absolute bg-brand-primaryPurple/50 -z-10 top-56'>
+      </div>
+
+        <div className='mt-20 px-4 sm:px-6 flex flex-col overflow-x-hidden overflow-visible'>
+
+          <TitleSection title="Trusted By All" subheading="In the realm of professional productivity, our note-taking app stands as the quintessential tool, meeting every need with precision and ease." pill="Testimonials"></TitleSection>
+
+                {[...Array(2)].map((arr,index)=>(
+                  <div key = {randomUUID()} className={twMerge(
+                    clsx('mt-10 flex flex-nowrap gap-6 self-start',{
+                      'flex-row-reverse' : index === 1,
+                      'animate-[slide_250s_linear_infinite]' : true,
+                      'animate-[slide_250s_linear_infinite_reverse]' : index === 1,
+                      'ml-[100vw]' : index===1,
+                    }),'hover-paused'
+                  )}>
+                    {USERS.map((testimonials , index)=> (
+                      <CustomCard key={testimonials.name} className='w-[500px] shrink-0 rounded-xl dark:bg-gradient-to-t dark:from-border dark:to-background' cardHeader = {<div className='flex items-center gap-4'>
+                        <Avatar>
+                            <AvatarImage src={`/avatars/${index+1}.png`}></AvatarImage>
+                            <AvatarFallback>AV</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <CardTitle className='text-foreground'>{testimonials.name}</CardTitle>
+                          <CardDescription className='dark:text-washed-purple-800'>{`@${testimonials.name.toLowerCase()}`}</CardDescription>
+                        </div>
+                      </div>}
+                        cardContent = {<p className='dark:text-washed-purple-800'>{testimonials.message}</p>}
+                      >
+
+                      </CustomCard>
+                    ))}
+
+                  </div>
+                ))}
+
+        </div>
+      </section>
     </>
   )
 }
